@@ -1,5 +1,9 @@
-from django.contrib.auth.views import LoginView
+from inertia import render
+from django.views import View
 
 
-class UserLoginView(LoginView):
-    template_name = 'login.html'
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'Login', props={
+            'title': 'Страница входа',
+        })

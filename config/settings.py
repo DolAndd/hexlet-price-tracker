@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.user',
     'django_bootstrap5',
+    'inertia',
+    'django_vite',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'inertia.middleware.InertiaMiddleware',
 ]
+
+INERTIA_LAYOUT = 'base.html'  # Базовый шаблон
+INERTIA_SSR_URL = 'http://localhost:13714'  # Опционально для SSR
 
 ROOT_URLCONF = 'config.urls'
 
