@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Django + Inertia + React</title>
-    {% block inertia %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My App</title>
+
+  <!-- Только для development-режима -->
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:5173/src/main.tsx"></script>
 </head>
 <body>
-    <div id="app"></div>
+  <div id="app" data-page="{}"></div>
+
+  <script>
+    // Проверка режима работы
+    console.log('Vite dev server should be running on port 5173');
+  </script>
 </body>
 </html>

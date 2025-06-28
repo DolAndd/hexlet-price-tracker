@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.user',
+    'apps.users',
     'django_bootstrap5',
     'inertia',
     'django_vite',
@@ -54,8 +55,31 @@ MIDDLEWARE = [
     'inertia.middleware.InertiaMiddleware',
 ]
 
-INERTIA_LAYOUT = 'base.html'  # Базовый шаблон
-INERTIA_SSR_URL = 'http://localhost:13714'  # Опционально для SSR
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+INERTIA_LAYOUT = 'base.html'  # Путь к вашему базовому шаблону
+INERTIA_SSR_ENABLED = False  # Отключаем SSR, если не используете
+INERTIA_VERSION = '1.0'  # Версия для инвалидации кэша
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Физический путь для collectstatic
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Путь к вашим статическим файлам в разработке
+]
+
+# Настройки Django Vite
+DJANGO_VITE = {
+    'default': {
+        'dev_mode': True,
+        'dev_server_protocol': 'http',
+        'dev_server_host': 'localhost',
+        'dev_server_port': 5173,
+        'static_url_prefix': 'dist'
+    }
+}
+
+# Настройки статических файлов
+
 
 ROOT_URLCONF = 'config.urls'
 
