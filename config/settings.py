@@ -57,26 +57,27 @@ MIDDLEWARE = [
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-INERTIA_LAYOUT = 'base.html'  # Путь к вашему базовому шаблону
-INERTIA_SSR_ENABLED = False  # Отключаем SSR, если не используете
-INERTIA_VERSION = '1.0'  # Версия для инвалидации кэша
-
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Физический путь для collectstatic
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'  # Куда collectstatic копирует файлы
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Путь к вашим статическим файлам в разработке
+    BASE_DIR / 'frontend/dist',  # Путь к собранным файлам Vite
 ]
 
 # Настройки Django Vite
-DJANGO_VITE = {
-    'default': {
-        'dev_mode': True,
-        'dev_server_protocol': 'http',
-        'dev_server_host': 'localhost',
-        'dev_server_port': 5173,
-        'static_url_prefix': 'dist'
-    }
-}
+DJANGO_VITE_DEV_MODE = True
+DJANGO_VITE_ASSETS_PATH = BASE_DIR / 'frontend' / 'dist'  # Куда Vite складывает сборку
+DJANGO_VITE_MANIFEST_PATH = DJANGO_VITE_ASSETS_PATH / 'manifest.json'
+DJANGO_VITE_DEV_SERVER_PORT = 5173
+STATICFILES_DIRS.append(DJANGO_VITE_ASSETS_PATH)
+
+# Inertia
+
+CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+CSRF_COOKIE_NAME = 'XSRF-TOKEN'
+INERTIA_LAYOUT = "base.html"
+INERTIA_VERSION = "1.0"
+INERTIA_SSR_ENABLED = False
+INERTIA_SSR_URL = "http://localhost:13714"
 
 # Настройки статических файлов
 

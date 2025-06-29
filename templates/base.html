@@ -1,20 +1,16 @@
+{% load django_vite %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-
-  <!-- Только для development-режима -->
-  <script type="module" src="http://localhost:5173/@vite/client"></script>
-  <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="http://localhost:5173/@vite/client"></script>
+    <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+    <title>Django React Inertia</title>
 </head>
 <body>
-  <div id="app" data-page="{}"></div>
-
-  <script>
-    // Проверка режима работы
-    console.log('Vite dev server should be running on port 5173');
-  </script>
+    <div id="app" data-page="{{ page|escape }}"></div>
 </body>
 </html>
