@@ -13,17 +13,13 @@ const routes = [
 ];
 
 export const renderRoutes = (): React.ReactNode => {
-  return (
-    <Routes>
-      {routes.map((route, index) => (
-        <Route 
-          key={index} 
-          path={route.path} 
-          element={route.element} 
-        />
-      ))}
-    </Routes>
-  );
+  return routes.map((route, index) => (
+    <Route
+      key={index}
+      path={route.path}
+      element={route.element}
+    />
+  ));
 };
 
 export default routes;
