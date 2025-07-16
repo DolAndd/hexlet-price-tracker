@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { createInertiaApp } from '@inertiajs/react'
 import './styles/index.css'
-import App from './App.tsx'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Явно находим элемент перед инициализацией
+const appElement = document.getElementById('app')
+
+if (appElement) {
+  createInertiaApp({
+    resolve: (name) => import(`./Pages/${name}.tsx`),
+    setup({ el, App, props }) {
+      const root = createRoot(el)
+      root.render(<App {...props} />)
+    }
+  })
+} else {
+  console.error('Элемент #app не найден в DOM!')
+}

@@ -1,20 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import { renderRoutes } from './routes';
+import { createInertiaApp } from '@inertiajs/react'
+import MainLayout from './Layouts/MainLayout'
 
-const App: React.FC = () => {
+export default function App({ Component, pageProps }) {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          {renderRoutes()}
-        </Routes>
-      </Layout>
-    </Router>
-  );
-};
-
-export default App;
-
-
+    <MainLayout>
+      <Component {...pageProps} />
+    </MainLayout>
+  )
+}
